@@ -15,7 +15,7 @@ def search(driver:webdriver.Chrome, url:str, page=1) -> list:
 
     driver.get(url)
 
-    item_eles = WebDriverWait(driver, 10).until(
+    item_eles = WebDriverWait(driver, timeout=10, poll_frequency=0.5).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, f'div.recycle-scroller--item'))
     )
 
