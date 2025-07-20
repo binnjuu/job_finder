@@ -1,8 +1,3 @@
-import json
-import settings
-import time
-from _self_packages.chrome_driver import ChromeDriver
-from _self_packages import send
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
