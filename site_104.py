@@ -22,6 +22,15 @@ def search(driver:webdriver.Chrome, url:str, page=1) -> list:
     # 資料擷取
     jobs_list = []
     for item in item_eles:
+        # 跳過推薦工作
+        try:
+            item.find_element(By.CSS_SELECTOR, "i.jb_icon_focus")
+            title = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-job > h2").text
+            # print(f"SKIP: {title}")
+            continue
+        except:
+            pass
+
         link = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-job > h2 > a").get_attribute("href")
         title = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-job > h2").text
         company = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-company > a").text
