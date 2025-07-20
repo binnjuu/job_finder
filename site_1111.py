@@ -31,6 +31,7 @@ def search(driver:webdriver.Chrome, url:str) -> list:
         experience = other_info[3].text
 
         update = item.find_element(By.CSS_SELECTOR, "div.job-summary").text
+        update = update.replace(" ", "")[:5] # 刪除應徵人數資訊
 
         job = {
             "連結": f"https://www.1111.com.tw/job/{id}",
