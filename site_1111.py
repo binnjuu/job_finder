@@ -44,7 +44,7 @@ for item in item_eles:
     update = item.find_element(By.CSS_SELECTOR, "div.job-summary").text
 
     info = {
-        "ID": id,
+        "連結": f"https://www.1111.com.tw/job/{id}",
         "標題": title,
         "企業": company,
         "地區": area,
