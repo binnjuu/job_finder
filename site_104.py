@@ -8,7 +8,7 @@ url = r"https://www.104.com.tw/jobs/search/?area=6001001000&jobsource=joblist_se
 
 def search(driver:webdriver.Chrome, url:str, page=1) -> list:
     """
-    進入指令網址抓取工作資料，整理後以list格式回傳。
+    進入104網址抓取工作資料，整理後以list格式回傳。
     """
     # 修改網址中的頁碼
     url = url_revision.page_number(url=url, page=page)

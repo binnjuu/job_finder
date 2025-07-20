@@ -8,7 +8,7 @@ url = r"https://job.taiwanjobs.gov.tw/Internet/Index/job_search_list.aspx?qStamp
 
 def search(driver:webdriver.Chrome, url:str) -> list:
     """
-    進入指令網址抓取工作資料，整理後以list格式回傳。
+    進入台灣就業通網址抓取工作資料，整理後以list格式回傳。
     """
     driver.get(url)
 
