@@ -25,7 +25,7 @@ def search(driver:webdriver.Chrome, url:str, page=1) -> list:
         # 跳過推薦工作
         try:
             item.find_element(By.CSS_SELECTOR, "i.jb_icon_focus")
-            title = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-job > h2").text
+            # title = item.find_element(By.CSS_SELECTOR, "div.info-container div.info-job > h2").text
             # print(f"SKIP: {title}")
             continue
         except:
