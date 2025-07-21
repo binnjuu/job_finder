@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import datetime
 from _self_packages import send
 
@@ -14,7 +15,7 @@ class Today_Json():
         path = f'{self.dir_path}/{today}.json'
         return path
 
-    def create(self, content: dict):
+    def write(self, content: dict):
         """
         依據今天的日期輸出json file
         ex. 2025-07-21.json
@@ -24,11 +25,12 @@ class Today_Json():
     
     def read(self):
         """
-        讀取今天的json file
+        讀取並回傳今天的json file
         """
         path = self.today_json_path()
         if os.path.isfile(path):
-            return open(path, encoding="utf8", mode="r").read()
+            json_content = open(path, encoding="utf8", mode="r").read()
+            return json.loads(json_content)
         else:
             return -1 # 檔案不存在則回傳-1
 
