@@ -44,7 +44,7 @@ def search(driver:webdriver.Chrome, url:str, page=1) -> list:
             "薪資": salary,
             "學歷": education,
             "經驗": experience,
-            "工作內容": job_content,
+            "說明": job_content,
             "更新": update,
         }
         jobs_list.append(job)

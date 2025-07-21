@@ -66,7 +66,7 @@ class Site_104():
                 "薪資": salary,
                 "學歷": education,
                 "經驗": experience,
-                "工作內容": job_content,
+                "說明": job_content,
                 "更新": update,
             }
             
