@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 import url_revision
 
-url = r"https://www.1111.com.tw/search/job?page=1&col=da&sort=desc&c0=100100"
 
 def search(driver:webdriver.Chrome, url:str, page=1) -> list:
     """
