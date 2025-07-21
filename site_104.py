@@ -54,6 +54,9 @@ class Site_104():
             salary = other_info[3].text
 
             update = item.find_element(By.CSS_SELECTOR, "div.date-container").text
+            # 如果字串長度<5則代表月份沒有補0，所以補上0
+            if len(update) < 5:
+                update = "0" + update
 
             job = {
                 "連結": link,
