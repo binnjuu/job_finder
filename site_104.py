@@ -12,17 +12,23 @@ class Site_104():
     def __init__(self, driver:webdriver.Chrome):
         self.driver = driver
 
-    def search(self, url:str, page=1):
+    def load_page(self, url:str, page=1):
         """
-        抓取目前的頁面資料整理後，以list格式回傳
-        可利用page=修改頁碼
+        載入指定的網址，可利用page=修改頁碼
         """
         url = url_revision.page_number(url=url, page=page) # 修改網址中的頁碼
         self.driver.get(url)
 
-        item_eles = WebDriverWait(self.driver, timeout=10, poll_frequency=0.5).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, f'div.recycle-scroller--item'))
-        )
+    def scraping(self):
+        """
+        抓取目前的頁面資料整理後，以list格式回傳
+        """
+        try:
+            item_eles = WebDriverWait(self.driver, timeout=10, poll_frequency=0.5).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, f'div.recycle-scroller--item'))
+            )
+        except:
+            return -1
 
         # 資料擷取
         jobs_list = []
