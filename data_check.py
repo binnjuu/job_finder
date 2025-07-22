@@ -11,12 +11,13 @@ def json_file(job:dict):
         return False
     
     all_links = []
-    for content in json_contents:
-        all_links.append(content["連結"])
+    for site_data in dict(json_contents).values():
+        for data in site_data:
+            all_links.append(data["連結"])
 
     if job["連結"] in all_links:
-        print("存在")
+        # print("存在")
         return True
     else:
-        print("不存在")
+        # print("不存在")
         return False
