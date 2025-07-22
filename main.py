@@ -97,7 +97,7 @@ for key in all_jobs.keys():
 bot_message_list = []
 for filter_jobs in all_filter_jobs.values():
     for job in filter_jobs:
-        bot_message = f"\n### {job["更新"]} | [{job["標題"]}](<{job["連結"]}>)\n"
+        bot_message = f"### {job["更新"]} | [{job["標題"]}](<{job["連結"]}>)\n"
         bot_message += f"```[企業] {job["企業"]}\n"
         bot_message += f"[地區] {job["地區"]}\n"
         bot_message += f"[學歷] {job["學歷"]}\n"
