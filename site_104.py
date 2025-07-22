@@ -2,7 +2,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
-import url_revision
 
 
 class Site_104():
@@ -11,13 +10,6 @@ class Site_104():
     """
     def __init__(self, driver:webdriver.Chrome):
         self.driver = driver
-
-    def load_page(self, url:str, page=1):
-        """
-        載入指定的網址，可利用page=修改頁碼
-        """
-        url = url_revision.page_number(url=url, page=page) # 修改網址中的頁碼
-        self.driver.get(url)
 
     def scraping(self):
         """
