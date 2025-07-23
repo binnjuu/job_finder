@@ -25,10 +25,10 @@ while True:
 driver = chrome_driver.monitor()
 
 today_json = Today_Json()
-site_104 = Site_104(driver=driver, url=settings.url["104"])
-site_518 = Site_518(driver=driver, url=settings.url["518"])
-site_1111 = Site_1111(driver=driver, url=settings.url["1111"])
-site_taiwanjobs = Site_Taiwanjobs(driver=driver, url=settings.url["taiwanjobs"])
+site_104 = Site_104(driver=driver)
+site_518 = Site_518(driver=driver)
+site_1111 = Site_1111(driver=driver)
+site_taiwanjobs = Site_Taiwanjobs(driver=driver)
 
 date = str(datetime.today().date())[-5:].replace("-", "/") # 取得今天的日期，格式: 07/21
 

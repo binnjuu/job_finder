@@ -4,15 +4,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 import url_revision
 from _self_packages import send
+import settings
 
 class Site_104():
     """
     在指定的104網址中抓取職缺資料
     """
-    def __init__(self, driver:webdriver.Chrome, url:str, page_number:int=1):
+    def __init__(self, driver:webdriver.Chrome, page_number:int=1):
         self.driver = driver
         self.page_number = page_number
-        self.url = url
+        self.url = settings.url["104"]
 
     def load_page(self, page:int|None=None):
         """
