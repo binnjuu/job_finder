@@ -108,6 +108,7 @@ def main():
     os.system('taskkill /F /IM chrome.exe')
 
 if __name__ == "__main__":
+    send.message("等待下一個30分時執行...")
     scheduler = BlockingScheduler()
     scheduler.add_job(main, 'cron', minute=30) # 每個小時30分的時候都執行一次
     scheduler.start()
