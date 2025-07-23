@@ -2,22 +2,46 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
-
+import url_revision
+from _self_packages import send
 
 class Site_1111():
     """
     在指定的1111網址中抓取職缺資料
     """
-    def __init__(self, driver:webdriver.Chrome):
+    def __init__(self, driver:webdriver.Chrome, url:str, page_number:int=1):
         self.driver = driver
+        self.page_number = page_number
+        self.url = url
+    
+    def load_page(self, page:int|None=None):
+        """
+        載入指定的網址，可利用page=修改頁碼
+        """
+        if page is not None and page != self.page_number:
+            self.page_number = page
+        send.message(f"正在載入1111第{self.page_number}頁...")
+
+        url = url_revision.page_number(url=self.url, page=self.page_number) # 修改網址中的頁碼
+        self.driver.get(url)
+
+    def next_page(self):
+        """
+        載入下一頁
+        """
+        self.page_number += 1
+        self.load_page()
         
     def scraping(self):
         """
         抓取目前的頁面資料整理後，以list格式回傳
         """
-        item_eles = WebDriverWait(self.driver, timeout=10, poll_frequency=0.5).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, f'div.search-content div.job-card'))
-        )
+        try:
+            item_eles = WebDriverWait(self.driver, timeout=10, poll_frequency=0.5).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, f'div.search-content div.job-card'))
+            )
+        except:
+            return -1
 
         # 資料擷取
         jobs_list = []
