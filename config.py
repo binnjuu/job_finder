@@ -12,7 +12,7 @@ class Config:
         self.config_pool = config_pool
         self.dir_path = dir_path
 
-    def check(self) -> None:
+    def check(self, print_setting=False) -> None:
         """
         檢查config是否存在，如果不存在或缺少參數則重新建立
         """
@@ -38,7 +38,8 @@ class Config:
                     if section_name in parser_read.sections():
                         if key in list(parser_read[section_name]):
                             find = True
-                            print(f"{key} = {parser_read[section_name][key]}")
+                            if print_setting:
+                                print(f"{key} = {parser_read[section_name][key]}")
                             parser_write.set(section_name, key, parser_read[section_name][key])
                     
                     if not find:
