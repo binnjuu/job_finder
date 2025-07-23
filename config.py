@@ -1,7 +1,7 @@
 import configparser
 import os
 import urllib.parse
-from _self_packages import send
+from self_packages import send
 
 class Config:
     """

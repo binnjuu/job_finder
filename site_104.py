@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 import url_revision
-from _self_packages import send
+from self_packages import send
 import settings
 
 class Site_104():

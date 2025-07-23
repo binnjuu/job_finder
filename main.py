@@ -1,7 +1,7 @@
 import settings
-from _self_packages.chrome_driver import ChromeDriver
-from _self_packages import kawaii_fox
-from _self_packages import send
+from self_packages.chrome_driver import ChromeDriver
+from self_packages import kawaii_fox
+from self_packages import send
 from datetime import datetime
 import time
 import os
@@ -13,6 +13,7 @@ from site_1111 import Site_1111
 from site_taiwanjobs import Site_Taiwanjobs
 from apscheduler.schedulers.blocking import BlockingScheduler
 import data_check
+
 
 MAX_PAGE_LIMIT = 2
 def main():
@@ -108,7 +109,8 @@ def main():
     os.system('taskkill /F /IM chrome.exe')
 
 if __name__ == "__main__":
-    send.message("等待下一個30分時執行...")
-    scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'cron', minute=30) # 每個小時30分的時候都執行一次
-    scheduler.start()
+    # send.message("等待下一個30分時開始重複執行...")
+    # scheduler = BlockingScheduler()
+    # scheduler.add_job(main, 'cron', minute=30) # 每個小時30分的時候都執行一次
+    # scheduler.start()
+    main()

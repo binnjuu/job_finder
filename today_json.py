@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import datetime
-from _self_packages import send
+from self_packages import send
 
 class Today_Json():
     def __init__(self, dir_path:str="./file"):
