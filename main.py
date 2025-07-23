@@ -17,10 +17,10 @@ import data_check
 MAX_PAGE_LIMIT = 2
 def main():
     #監聽Chrome Driver
-    chrome_driver = ChromeDriver(port=settings.port, driver_path=settings.driver_path, profile_save_path=settings.profile_save_path)
+    chrome_driver = ChromeDriver(port=settings.driver_port, driver_path=settings.driver_path, profile_save_path=settings.profile_save_path)
     while True:
         if not chrome_driver.check_port():
-            chrome_driver.launch(account=settings.account)
+            chrome_driver.launch(account=settings.forld_name)
         else:
             break
 
@@ -99,7 +99,7 @@ def main():
             bot_message_list.append(bot_message)
     if len(bot_message_list) > 0:
         print(f"共篩選出{len(bot_message_list)}個職缺資訊")
-        kawaii_fox.start(api_key=settings.discord_bot_key, channel_id=settings.channel_id, message=bot_message_list)
+        kawaii_fox.start(api_key=settings.discord_api_key, channel_id=settings.channel_id, message=bot_message_list)
 
     # 每次抓完資料都會替換json內容為最新的資料，再看要不要改成新增的
     today_json.save(new_jobs_list=all_filter_jobs)
