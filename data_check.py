@@ -21,3 +21,24 @@ def json_file(job:dict):
     else:
         # print("不存在")
         return False
+
+
+def next_page(jobs_list:list, date:str):
+    """
+    根據傳入資料來判斷是否還需要載入下一頁
+    """
+    status = True
+    # 如果資料抓取失敗或是沒有資料則中斷
+    if len(jobs_list) <= 0:
+        print("資料抓取失敗或是沒有資料")
+        status = False
+    # 如果最後一筆資料不是當天的則中斷
+    elif jobs_list[-1]["更新"] != date:
+        print("最後一筆資料不是當天的")
+        status = False
+    # 如果最後一筆資料已經儲存在json檔案中則中斷
+    elif json_file(jobs_list[-1]):
+        print("最後一筆資料已經儲存在json檔案")
+        status = False
+    
+    return status
