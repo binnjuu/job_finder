@@ -132,4 +132,4 @@ if len(bot_message_list) > 0:
     kawaii_fox.start(api_key=settings.discord_bot_key, channel_id=settings.channel_id, message=bot_message_list)
 
 # 每次抓完資料都會替換json內容為最新的資料，再看要不要改成新增的
-today_json.write(content=all_jobs)
+today_json.save(new_jobs_list=all_filter_jobs)

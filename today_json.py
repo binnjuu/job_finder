@@ -15,13 +15,24 @@ class Today_Json():
         path = f'{self.dir_path}/{today}.json'
         return path
 
-    def write(self, content: dict):
+    def save(self, new_jobs_list: dict):
         """
         依據今天的日期輸出json file
+        如果已經建立了則改為新增內容
         ex. 2025-07-21.json
         """
         path = self.today_json_path()
-        open(path, encoding="utf8", mode="w+").write(send.pretty(content, enable_print=False))
+        if not os.path.isfile(path):
+            open(path, encoding="utf8", mode="w+").write(send.pretty(new_jobs_list, enable_print=False))
+            return
+        
+        data = self.read()
+        for site_key in new_jobs_list.keys():
+            if site_key not in data.keys():
+                data[site_key] = []
+            
+            data[site_key] += new_jobs_list[site_key]
+        open(path, encoding="utf8", mode="w+").write(send.pretty(data, enable_print=False))
     
     def read(self):
         """
