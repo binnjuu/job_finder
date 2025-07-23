@@ -7,6 +7,7 @@ import time
 
 from today_json import Today_Json
 from site_104 import Site_104
+from site_518 import Site_518
 from site_1111 import Site_1111
 from site_taiwanjobs import Site_Taiwanjobs
 import data_check
@@ -25,6 +26,7 @@ driver = chrome_driver.monitor()
 
 today_json = Today_Json()
 site_104 = Site_104(driver=driver, url=settings.url["104"])
+site_518 = Site_518(driver=driver, url=settings.url["518"])
 site_1111 = Site_1111(driver=driver, url=settings.url["1111"])
 site_taiwanjobs = Site_Taiwanjobs(driver=driver, url=settings.url["taiwanjobs"])
 
@@ -66,22 +68,39 @@ for times in range(MAX_PAGE_LIMIT):
 all_jobs["104"] = jobs_104
 send.message(f"找到{len(jobs_104)}個")
 
-# taiwanjobs
-jobs_taiwanjobs = []
+# # taiwanjobs
+# jobs_taiwanjobs = []
+# for times in range(MAX_PAGE_LIMIT):
+#     if times == 0:
+#         site_taiwanjobs.load_page()
+#     else:
+#         site_taiwanjobs.next_page()
+#     jobs_list = site_taiwanjobs.scraping()
+#     jobs_taiwanjobs = jobs_list # 台灣就業通的所有頁數資料都會在同一個頁面上，所以每次都覆蓋掉舊的資料
+
+#     #檢查要不要載入下一頁
+#     if not data_check.next_page(jobs_list=jobs_list, date=date):
+#         break
+#     time.sleep(3) # 避免載入頻率過高
+# all_jobs["taiwanjobs"] = jobs_taiwanjobs
+# send.message(f"找到{len(jobs_taiwanjobs)}個")
+
+# 518
+jobs_518 = []
 for times in range(MAX_PAGE_LIMIT):
     if times == 0:
-        site_taiwanjobs.load_page()
+        site_518.load_page()
     else:
-        site_taiwanjobs.next_page()
-    jobs_list = site_taiwanjobs.scraping()
-    jobs_taiwanjobs = jobs_list # 台灣就業通的所有頁數資料都會在同一個頁面上，所以每次都覆蓋掉舊的資料
+        site_518.next_page()
+    jobs_list = site_518.scraping()
+    jobs_518 += jobs_list
 
     #檢查要不要載入下一頁
     if not data_check.next_page(jobs_list=jobs_list, date=date):
         break
     time.sleep(3) # 避免載入頻率過高
-all_jobs["taiwanjobs"] = jobs_taiwanjobs
-send.message(f"找到{len(jobs_taiwanjobs)}個")
+all_jobs["518"] = jobs_518
+send.message(f"找到{len(jobs_518)}個")
 
 
 # 篩選出還未儲存的當日職缺
