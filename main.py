@@ -106,7 +106,8 @@ def main():
     today_json.save(new_jobs_list=all_filter_jobs)
 
     # 關閉所有Chrome瀏覽器
-    os.system('taskkill /F /IM chrome.exe')
+    # os.system('taskkill /F /IM chrome.exe')
+    driver.close()
 
 if __name__ == "__main__":
     send.message("等待下一個30分時開始重複執行...")
