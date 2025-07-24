@@ -3,6 +3,9 @@
 <br>
 例如104、1111、518、台灣就業通(目前不可用)
 
+![image](https://github.com/binnjuu/job_finder/blob/main/example.gif)
+
+
 ## 前置
 ### 下載儲存庫
 ```
@@ -31,7 +34,5 @@ git clone https://github.com/binnjuu/job_finder.git
 
 ### 其他事項
 * 搜尋頁面網址指的是各網站設定好地區與篩選條件的頁面網址
+* 搜尋頁面網址中不可以有ASCII Code，例如%2C
 * 後續想更改設定可以去修改config.ini
-
-### 注意事項
-* 程式執行後會關閉所有執行中的Chrome瀏覽器
