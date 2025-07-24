@@ -36,13 +36,19 @@ def start(api_key:str, channel_id:int, message, at_user_id:str|None = None):
         # 如果訊息為list格式，則每隔x秒送出一個
         if type(message) is list:
             for msg in message:
-                output_text = f"`[{file_date}]`"
-                if at_user_id is not None:
-                    output_text += f"\n>> <@{at_user_id}> {msg}"
+                if len(msg) > 2000:
+                    buffer = StringIO(msg)
+                    file_date = datetime.datetime.now().strftime(r"%Y-%m-%d")
+                    f = discord.File(buffer, filename=f"{file_date}.txt")
+                    await channel.send(file=f)
                 else:
-                    output_text += f"\n{msg}\n---"
+                    output_text = f"`[{file_date}]`"
+                    if at_user_id is not None:
+                        output_text += f"\n>> <@{at_user_id}> {msg}"
+                    else:
+                        output_text += f"\n{msg}\n---"
 
-                await channel.send(output_text)
+                    await channel.send(output_text)
                 time.sleep(3)
 
         elif len(message) > 2000:
