@@ -47,6 +47,10 @@ def main():
             else:
                 site_obj.next_page()
             jobs_list = site_obj.scraping()
+            if jobs_list == -1:
+                send.message("抓取失敗")
+                break
+            
             jobs += jobs_list
 
             # 檢查要不要載入下一頁
