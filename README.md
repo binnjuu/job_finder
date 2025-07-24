@@ -23,7 +23,7 @@ git clone https://github.com/binnjuu/job_finder.git
 ### 使用
 #### 初次/單次執行
 1. 使用CMD或PowerShell開啟專案資料夾
-2. 輸入py run.py或是python run.py
+2. 輸入py single_run.py或是python single_run.py
 3. 依據程式要求設定參數(只有參數還未設定時需要)
 4. 等待程式執行結束
 
