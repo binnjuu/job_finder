@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from self_packages import send
-import time
+import other.url_revision as url_revision
 import setting.settings as settings
 
 class Site_518():
@@ -15,33 +15,23 @@ class Site_518():
         self.page_number = page_number
         self.url = settings.url["518"]
     
-    def load_page(self):
+    def load_page(self, page:int|None=None):
         """
         載入指定的網址，518不能修改頁碼
         """
+        if page is not None and page != self.page_number:
+            self.page_number = page
         send.message(f"正在載入518第{self.page_number}頁...")
-        self.driver.get(self.url)
+
+        url = url_revision.page_number(url=self.url, arg="job-index-P-",page=self.page_number) # 修改網址中的頁碼
+        self.driver.get(url)
 
     def next_page(self):
         """
         按下'載入更多'讀取下一頁的內容
         """
-        try:
-            next_page_button = WebDriverWait(self.driver, timeout=10, poll_frequency=0.5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, f'div#pagination > div.common-pagination > a.imga.goNext'))
-            )
-            self.page_number += 1
-            send.message(f"正在載入518第{self.page_number}頁...")
-            next_page_button.click()
-
-            # 確認目前的頁數是否大於應該要載入的頁數
-            for wait in range(1, 3):
-                print(f"正在等待頁面載入: {wait}/3")
-                last_page_number = self.driver.find_element(By.CSS_SELECTOR, f'div#pagination > a.imga.goNext').get_attribute("data-going-page")-1
-                if int(last_page_number) < self.page_number:
-                    time.sleep(3)
-        except:
-            return -1
+        self.page_number += 1
+        self.load_page()
     
     def scraping(self):
         """

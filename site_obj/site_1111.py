@@ -23,7 +23,7 @@ class Site_1111():
             self.page_number = page
         send.message(f"正在載入1111第{self.page_number}頁...")
 
-        url = url_revision.page_number(url=self.url, page=self.page_number) # 修改網址中的頁碼
+        url = url_revision.page_number(url=self.url, arg="page=", page=self.page_number) # 修改網址中的頁碼
         self.driver.get(url)
 
     def next_page(self):
