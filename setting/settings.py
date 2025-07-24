@@ -1,5 +1,5 @@
-from config import Config
-import config_pool
+from setting.config import Config
+import setting.config_pool as config_pool
 
 config = Config(file="config.ini", config_pool=config_pool.setting, dir_path="setting").read_config()
 driver_port = config.getint(section="setting", option="driver_port")

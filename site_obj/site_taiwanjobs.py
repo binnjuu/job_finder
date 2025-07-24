@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from self_packages import send
 import time
-import settings
+import setting.settings as settings
 
 class Site_Taiwanjobs():
     """

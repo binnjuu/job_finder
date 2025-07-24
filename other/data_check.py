@@ -1,4 +1,4 @@
-from today_json import Today_Json
+from other.today_json import Today_Json
 
 
 def json_file(job:dict):

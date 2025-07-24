@@ -162,4 +162,4 @@ cython_debug/
 # custom
 test.py
 file/
-setting/
+config.ini

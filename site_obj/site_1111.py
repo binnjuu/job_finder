@@ -2,9 +2,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
-import url_revision
+import other.url_revision as url_revision
 from self_packages import send
-import settings
+import setting.settings as settings
 
 class Site_1111():
     """

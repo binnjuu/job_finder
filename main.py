@@ -1,4 +1,4 @@
-import settings
+import setting.settings as settings
 from self_packages.chrome_driver import ChromeDriver
 from self_packages import kawaii_fox
 from self_packages import send
@@ -6,13 +6,13 @@ from datetime import datetime
 import time
 import os
 
-from today_json import Today_Json
-from site_104 import Site_104
-from site_518 import Site_518
-from site_1111 import Site_1111
-from site_taiwanjobs import Site_Taiwanjobs
+from other.today_json import Today_Json
+from site_obj.site_104 import Site_104
+from site_obj.site_518 import Site_518
+from site_obj.site_1111 import Site_1111
+from site_obj.site_taiwanjobs import Site_Taiwanjobs
 from apscheduler.schedulers.blocking import BlockingScheduler
-import data_check
+import other.data_check as data_check
 
 
 MAX_PAGE_LIMIT = 2
