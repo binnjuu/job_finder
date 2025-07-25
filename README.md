@@ -17,19 +17,19 @@ git clone https://github.com/binnjuu/job_finder.git
 <br>
 下載完成後解壓縮chromedriver.exe
 
-### Discord Bot API
-你需要自行申請一個Discord bot API
+### Discord
+你需要自行申請一個Discord Bot API並進行相關設定
 
 ### 使用
 #### 初次/單次執行
 1. 使用CMD或PowerShell開啟專案資料夾
-2. 輸入py single_run.py或是python single_run.py
+2. 輸入`py single_run.py`或是`python single_run.py`
 3. 依據程式要求設定參數(只有參數還未設定時需要)
 4. 等待程式執行結束
 
 #### 定時執行(必須先完成一次上面的步驟)
 1. 使用CMD或PowerShell開啟專案資料夾
-2. 輸入py main.py或是python main.py
+2. 輸入`py main.py`或是`python main.py`
 3. 等待程式開始執行(每個小時30分時會執行一次，例如01:30、02:30、03:30...等)
 
 ### 其他事項
