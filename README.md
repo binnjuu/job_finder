@@ -1,7 +1,7 @@
 ## 用途
-定時爬取當天的部分台灣求職網站的資料，並於整理後傳送Discord訊息至指定頻道。
+定時爬取部分台灣求職網站的當日更新職缺，並於整理後傳送Discord訊息至指定頻道。
 <br>
-例如104、1111、518、台灣就業通(目前不可用)
+目前支援網站有104人力銀行、1111人力銀行、518熊班
 
 ![image](https://github.com/binnjuu/job_finder/blob/main/example.gif)
 
@@ -10,6 +10,11 @@
 ### 下載儲存庫
 ```
 git clone https://github.com/binnjuu/job_finder.git
+```
+
+### 安裝所需套件
+```
+pip install -r requirements.txt
 ```
 
 ### 下載chrome driver
