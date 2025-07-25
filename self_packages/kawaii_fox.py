@@ -49,7 +49,7 @@ def start(api_key:str, channel_id:int, message, at_user_id:str|None = None):
                         output_text += f"\n{msg}\n---"
 
                     await channel.send(output_text)
-                time.sleep(3)
+                time.sleep(1)
 
         elif len(message) > 2000:
                 buffer = StringIO(message)

@@ -6,7 +6,7 @@ def discord_message(all_filter_jobs:dict):
     將篩選後新找到的職缺資料，整理成訊息後逐一送出
     """
     if len(all_filter_jobs) <= 0:
-        print("沒有新的職缺需要傳送discord訊息")
+        print(">>沒有需要傳送discord的訊息")
         return -1
     
     bot_message_list = []

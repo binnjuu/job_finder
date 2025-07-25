@@ -1,3 +1,2 @@
 import main
-
-main.main()
+main.main(loop=False)
