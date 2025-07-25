@@ -59,7 +59,13 @@ class Site_518():
             area = other[0].text
             experience = other[1].text
             education = other[2].text
-            update = item.find_element(By.CSS_SELECTOR, "span.job__date").text
+
+            # 將顯示'新'而不是更新日期的職缺，更新日儲存為today
+            if "job__card--new" in item.get_attribute("class"):
+                update = "today"
+            else:
+                update = item.find_element(By.CSS_SELECTOR, "span.job__date").text
+            print(update)
 
             job = {
                 "連結": link,

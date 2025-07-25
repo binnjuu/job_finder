@@ -83,7 +83,8 @@ def main():
     for key in all_jobs.keys():
         jobs_list = all_jobs[key]
         for job in jobs_list:
-            if job["更新"] != date:
+            update = job["更新"]
+            if update != date or update != "today":
                 continue
             elif not data_check.json_file(job):
                 if key not in all_filter_jobs.keys():
