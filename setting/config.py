@@ -44,7 +44,7 @@ class Config:
                     
                     if not find:
                         # 沒有找到參數，需要新增參數
-                        user_input = input(f"需新增參數{key}...{section['item'][key]}: ")
+                        user_input = input(f"需新增參數{key}...{section['item'][key]}\n>> ")
                         # 避免輸入網址時有ASCII keycode
                         if '%' in user_input:
                             user_input = urllib.parse.unquote(user_input)
@@ -57,6 +57,7 @@ class Config:
         
         except Exception as e:
             send.pause(text="建立config時發生錯誤...", e=e)
+            pass
         
 
     def read_config(self) -> configparser.ConfigParser:
@@ -88,5 +89,5 @@ if __name__ == '__main__':
         },
     ]
 
-    config = Config(file="heloo.ini", config_pool=pool)
+    config = Config(file="heloo.ini", config_pool=pool, dir_path=r"./")
     config.check()
