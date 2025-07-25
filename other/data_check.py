@@ -42,3 +42,24 @@ def next_page(jobs_list:list, date:str):
         status = False
     
     return status
+
+def filter_jobs(all_jobs:dict, date:str):
+    """
+    從所有找到的職缺資料中，篩選出當日更新過還未儲存的新職缺資訊
+    """
+    count = 0
+    all_filter_jobs = {}
+    for key in all_jobs.keys():
+        jobs_list = all_jobs[key]
+        for job in jobs_list:
+            update = job["更新"]
+            is_today_job = update == date or update == "today"
+            print(date, job["更新"], job["標題"], is_today_job)
+            if is_today_job and not json_file(job): # 檢查是否當日且未記錄過的新職缺
+                if key not in all_filter_jobs.keys():
+                    all_filter_jobs[key] = []
+                all_filter_jobs[key].append(job)
+                count+=1
+
+    print(f"共篩選出{count}個新的職缺資訊")
+    return all_filter_jobs

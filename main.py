@@ -7,6 +7,7 @@ import time
 import os
 
 from other.today_json import Today_Json
+from other import bot
 from site_obj.site_104 import Site_104
 from site_obj.site_518 import Site_518
 from site_obj.site_1111 import Site_1111
@@ -34,7 +35,7 @@ def main():
         "518": Site_518(driver=driver),
     }
 
-    date = str(datetime.today().date())[-5:].replace("-", "/") # 取得今天的日期，格式: 07/21
+    today_date = str(datetime.today().date())[-5:].replace("-", "/") # 取得今天的日期，格式: 07/21
 
     # 在各個網站抓取職缺資料
     all_jobs = {}
@@ -54,7 +55,7 @@ def main():
             jobs += jobs_list
 
             # 檢查要不要載入下一頁
-            if not data_check.next_page(jobs_list=jobs_list, date=date):
+            if not data_check.next_page(jobs_list=jobs_list, date=today_date):
                 break
             time.sleep(3) # 避免載入頻率過高
         all_jobs[key] = jobs
@@ -79,33 +80,10 @@ def main():
     # send.message(f"找到{len(jobs_taiwanjobs)}個")
 
     # 篩選出還未儲存的當日職缺
-    all_filter_jobs = {}
-    for key in all_jobs.keys():
-        jobs_list = all_jobs[key]
-        for job in jobs_list:
-            update = job["更新"]
-            if update != date or update != "today":
-                continue
-            elif not data_check.json_file(job):
-                if key not in all_filter_jobs.keys():
-                    all_filter_jobs[key] = []
-                all_filter_jobs[key].append(job)
+    all_filter_jobs = data_check.filter_jobs(all_jobs=all_jobs, date=today_date)
 
     # 整理後送出discord訊息
-    bot_message_list = []
-    for filter_jobs in all_filter_jobs.values():
-        for job in filter_jobs:
-            bot_message = f"### {job["更新"]} | [{job["標題"]}](<{job["連結"]}>)\n"
-            bot_message += f"```[企業] {job["企業"]}\n"
-            bot_message += f"[地區] {job["地區"]}\n"
-            bot_message += f"[學歷] {job["學歷"]}\n"
-            bot_message += f"[經驗] {job["經驗"]}\n"
-            bot_message += f"[薪資] {job["薪資"]}\n"
-            bot_message += f"[說明]\n{job["說明"]}```"
-            bot_message_list.append(bot_message)
-    if len(bot_message_list) > 0:
-        print(f"共篩選出{len(bot_message_list)}個職缺資訊")
-        kawaii_fox.start(api_key=settings.discord_api_key, channel_id=settings.channel_id, message=bot_message_list)
+    bot.discord_message(all_filter_jobs=all_filter_jobs)
 
     # 每次抓完資料都會替換json內容為最新的資料，再看要不要改成新增的
     today_json.save(new_jobs_list=all_filter_jobs)
