@@ -65,7 +65,6 @@ class Site_518():
                 update = "today"
             else:
                 update = item.find_element(By.CSS_SELECTOR, "span.job__date").text
-            print(update)
 
             job = {
                 "連結": link,
